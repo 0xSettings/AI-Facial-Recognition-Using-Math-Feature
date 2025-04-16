@@ -2,8 +2,8 @@
 
 This is a Flask-based facial recognition system that integrates **AI-driven models** with **mathematical feature extraction techniques** like **Principal Component Analysis (PCA)** and **Linear Discriminant Analysis (LDA)** to identify faces with high accuracy and performance.
 
-> **Project Type:** Research Thesis  
-> **Tech Stack:** Python · Flask · PCA · LDA · CNN · SVM · MongoDB
+**Project Type:** Research Thesis  
+**Tech Stack:** Python · Flask · PCA · LDA · CNN · SVM · MongoDB
 
 ---
 
