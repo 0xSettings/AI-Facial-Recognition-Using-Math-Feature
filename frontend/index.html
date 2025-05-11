@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Facial Recognition</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #141e30, #243b55);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            margin: 10px 0;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        label {
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            border: none;
+            background-color: #fff;
+            color: #333;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #00c6ff;
+            background-image: linear-gradient(to right, #0072ff, #00c6ff);
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-image: linear-gradient(to right, #00c6ff, #0072ff);
+        }
+
+        h3 {
+            margin-top: 30px;
+        }
+
+        img {
+            margin-top: 10px;
+            border: 2px solid white;
+            border-radius: 8px;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* This centers the button and inputs horizontally */
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Face Recognition</h2>
+    <h2>CAPTURE UPLOAD</h2>
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <label>Select Image:</label>
+        <input type="file" name="image" required>
+        <br><br>
+        <button type="submit">Upload & Recognize</button>
+    </form>
+
+    {% if result %}
+    <h3>Recognition Result:</h3>
+    <p>{{ result }}</p>
+    <img src="{{ image_url }}" width="200">
+    {% endif %}
+</body>
+
+</html>

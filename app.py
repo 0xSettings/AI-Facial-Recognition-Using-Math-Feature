@@ -1,35 +1,36 @@
-from flask import Flask, render_template, request
-from preprocess import preprocess_image
-from extract_math import apply_pca, apply_lda
-from svm_classifier import predict_svm
-import numpy as np
+from flask import Flask, render_template, request, redirect, url_for
 import os
-import pickle
+from werkzeug.utils import secure_filename
+from face_recognition_module import prepare_dataset, train_models, recognize_face
+app = Flask(__name__, template_folder='frontend')
 
-app = Flask(__name__)
 
-with open('pca_model.pkl', 'rb') as f:
-    pca_model = pickle.load(f)
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-with open('lda_model.pkl', 'rb') as f:
-    lda_model = pickle.load(f)
+# Load and train models
+X, y, label_dict = prepare_dataset('dataset')
+pca, lda, X_lda = train_models(X, y)
 
-with open('svm_model.pkl', 'rb') as f:
-    svm_model = pickle.load(f)
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        file = request.files['image']
-        if file:
-            filepath = os.path.join("uploads", file.filename)
-            file.save(filepath)
-            features = preprocess_image(filepath)
-            test_pca = pca_model.transform([features])
-            test_lda = lda_model.transform(test_pca)
-            pred, conf = predict_svm(svm_model, test_lda)
-            return f"Prediction: {pred[0]} - Confidence: {conf[0][pred[0]]:.2f}"
     return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    if 'image' not in request.files:
+        return redirect(url_for('index'))
+
+    file = request.files['image']
+    if file.filename == '':
+        return redirect(url_for('index'))
+
+    filename = secure_filename(file.filename)
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file.save(filepath)
+
+    result = recognize_face(filepath, pca, lda, X_lda, y, label_dict)
+    return render_template('index.html', result=result, image_url='/' + filepath)
 
 if __name__ == '__main__':
     app.run(debug=True)

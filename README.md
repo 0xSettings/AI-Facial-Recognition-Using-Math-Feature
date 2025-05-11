@@ -1,41 +1,38 @@
 # AI-Driven Facial Recognition System using Mathematical Feature Extraction
+![Screenshot](image/beforeUpload.PNG)
+
 
 This is a Flask-based facial recognition system that integrates **AI-driven models** with **mathematical feature extraction techniques** like **Principal Component Analysis (PCA)** and **Linear Discriminant Analysis (LDA)** to identify faces with high accuracy and performance.
 
 > **Project Type:** Research Thesis  
 > **Tech Stack:** Python · Flask · PCA · LDA · CNN · SVM · MongoDB
 
----
-
-## 📌 Features
-
-- 📷 Image Capture & Upload
-- 🔎 Facial Preprocessing
-- 🧠 PCA & LDA Feature Extraction
-- 🧠 CNN Model for Deep Feature Learning
-- ✅ SVM Classifier for Identity Prediction
-- 🔐 Admin Dashboard for User Logs & Monitoring
-- 🗂️ MongoDB/NoSQL Database Integration
-- 📊 Confidence Score & Identity Verification
 
 ---
+![Screenshot](image/afterUploadFace.PNG)
+##  Features
 
-## 🖼️ System Architecture
-
-- plaintext
-User Upload Image ─▶ Preprocessing ─▶ PCA/LDA ─▶ CNN Model ─▶ SVM Classifier ─▶ Result
+- Image Capture & Upload
+- Facial Preprocessing
+- PCA & LDA Feature Extraction
+- CNN Model for Deep Feature Learning
+- SVM Classifier for Identity Prediction
+- Admin Local Server Dashboard for User Upload
+- MongoDB/NoSQL Database Integration
+- Confidence Score & Identity Verification
 
 ---
+![Screenshot](image/afterUploadNoFaceDetected.PNG)
 
 ## 🔧 System Requirements
 
-### ✅ Hardware
+###  Hardware
 - Intel i5/i7 or AMD Ryzen
 - RAM: 8GB+ (16GB Recommended)
 - GPU: NVIDIA GTX 1050 or better (optional for training CNN)
 
-### ✅ Software
-- OS: Windows 10/11 or Ubuntu Linux
+###  Software
+- OS: Windows 10/11, MacOS or Ubuntu Linux
 - Python 3.8+
 - MongoDB or PostgreSQL
 
@@ -43,27 +40,29 @@ User Upload Image ─▶ Preprocessing ─▶ PCA/LDA ─▶ CNN Model ─▶ SV
 
 ## ⚙️ Installation Guide
 
-### 1. Clone the repository
+### 1. Clone the Repository and Set Up Environment
 
 ```bash
-git clone https://github.com/yourusername/ai-face-recognition-math-extraction.git
-cd ai-face-recognition-math-extraction
+# Clone the repository
+git clone https://github.com/0xSettings/AI-Facial-Recognition-Using-Math-Feature.git
+cd ai-facial-recognition-using-math-feature
 
-```Create env
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate        # for Linux/Mac
-venv\Scripts\activate           # for Windows
 
-``` Install dependencies required
-pip install -r requirements.txt
+# Activate virtual environment
+source venv/bin/activate       # For Linux/Mac
+venv\Scripts\activate          # For Windows 
 
-``` Setup Database
-sudo service mongod start   # Start on Windows (used for this project)
-``
-----
+# Install all needed dependencies
+pip install -r require.txt
 
-``` Run the app
+# Start MongoDB service
+sudo service mongod start      # For Linux/WIndows Powershell user
+
+
+# Run app
 python app.py
 
-Visit: http://127.0.0.1:5000
-
+# 
+# http://127.0.0.1:5000
